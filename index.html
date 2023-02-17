@@ -1,0 +1,101 @@
+<!-- Coin Flip HTML -->
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>Coin Flipper</title>
+
+  </head>
+
+  <body>
+
+    <!-- The html is done for us. -->
+    <h1>Flip A Coin!</h1>
+    <h2>Guess Heads or Tails:</h2>
+
+    <button data-deyer="heads" class="user-choice">Heads</button>
+    <button data-deyer="tails" class="user-choice">Tails</button>
+
+    <br>
+
+    <div> You guessed:
+      <span id="guess"></span>
+    </div>
+
+    <br>
+
+    <div id="coin-image"></div>
+
+    <div id="win-lose"></div>
+
+    <div id="win-loss-tracker">
+
+      <div>
+        <h3>Wins: </h3>
+        <span id="wins"></span>
+      </div>
+
+      <div>
+        <h3>Losses: </h3>
+        <span id="losses"></span>
+      </div>
+
+      <div>
+        <h3>Heads chosen: </h3>
+        <span id="heads-chosen"></span>
+      </div>
+
+      <div>
+        <h3>Tails chosen: </h3>
+        <span id="tails-chosen"></span>
+      </div>
+
+    </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    let wins = 0;
+    let losses = 0;
+    let headsChosen = 0;
+    let tailsChosen = 0;
+
+    function updateView () {
+        document.querySelector('#wins').innerHTML = wins;
+        document.querySelector('#losses').innerHTML = losses;
+        document.querySelector('#heads-chosen').innerHTML = headsChosen;
+        document.querySelector('#tails-chosen').innerHTML = tailsChosen;
+    }
+
+    function ishiGor (result) {
+        const compChoice = Math.round(Math.random());
+
+        if (result === compChoice) {
+            wins++;
+        } else {
+            losses++;
+        }
+    }
+
+
+    $('.user-choice').on('click', function () {
+        const deyer = this.dataset.deyer;
+
+        if (deyer === 'heads') {
+            headsChosen++;
+            ishiGor(1);
+            updateView();
+        } else if (deyer === 'tails') {
+            tailsChosen++;
+            ishiGor(0);
+            updateView();
+        }
+    });
+  </script>
+
+  </body>
+
+</html>
